@@ -1,0 +1,14 @@
+{
+  "meat-toppings": {
+    "description": "A pizza is nothing without meat.",
+    "message": "Meat Toppings",
+    "bacon-pieces": {
+      "description": "Bacon is life!",
+      "message": "Bacon Pieces"
+    },
+    "pepperoni": {
+      "description": "American variety of salami.",
+      "message": "Pepperoni"
+    }
+  }
+}

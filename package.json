@@ -1,0 +1,38 @@
+{
+  "name": "sherby-localize",
+  "version": "1.0.0",
+  "description": "Mixin to localize Polymer components",
+  "scripts": {
+    "format": "npm run format:js && npm run format:json",
+    "format:js": "eslint . --ext js,html --ignore-path .gitignore --fix",
+    "format:json": "eslint . --ext .json --ignore-path .gitignore --fix",
+    "lint": "npm run lint:js && npm run lint:json && npm run lint:polymer",
+    "lint:js": "eslint . --ext js,html --ignore-path .gitignore",
+    "lint:json": "eslint . --ext .json --ignore-path .gitignore",
+    "lint:polymer": "polymer lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SherbyElements/sherby-localize.git"
+  },
+  "keywords": [
+    "i18n",
+    "l10n",
+    "language",
+    "localisation",
+    "translation",
+    "localize",
+    "polymer",
+    "sherby",
+    "webcomponents"
+  ],
+  "author": "Benjamin Rancourt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SherbyElements/sherby-localize/issues"
+  },
+  "homepage": "https://github.com/SherbyElements/sherby-localize",
+  "devDependencies": {
+    "eslint-config-udes": "^0.1.2"
+  }
+}

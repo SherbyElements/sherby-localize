@@ -1,0 +1,159 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../app-localize-behavior/app-localize-behavior.html">
+<link rel="import" href="../sherby-nested-property/sherby-nested-property-mixin.html">
+<link rel="import" href="../udes-language-mixin/udes-language-mixin.html">
+
+<script>
+  /**
+  * @namespace Sherby
+  */
+  window.Sherby = window.Sherby || {}
+
+  /**
+   * If you don't want to use the `_` delimiter, you could overide
+   * the `Sherby.Localize` object inside your index.html file.
+   */
+  window.Sherby.Localize = window.Sherby.Localize || {
+    delimiterTranslation: '_'
+  }
+
+  /**
+  * Localization mixin.
+  * @polymer
+  * @mixinFunction
+  * appliesMixin Sherby.NestedPropertyMixin
+  * @appliesMixin UdeS.LanguageMixin
+  * @appliesMixin Polymer.AppLocalizeBehavior
+  * @param {Class} parent Parent element.
+  * @return {Class} Parent element with the mixin.
+  */
+  Sherby.LocalizeMixin = (parent) =>
+    class extends Sherby.NestedPropertyMixin(UdeS.LanguageMixin(
+      Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], parent))
+    ) {
+      /**
+       * Return the properties.
+       * @static
+       * @return {Object} Properties.
+       */
+      static get properties() {
+        return {
+          /**
+          * Translates a string to the current `language`. Any parameters to
+          * the string should be passed in order, as follows:
+          * `localize(stringKey, param1Name, param1Value, ...)`
+          * 
+          * If you want to use the nested localize file, 
+          * the `stringKey` parameter must use the `delimiterTranslation`.
+          *
+          * By exemple, if you want the *cheese* message, in the following
+          * localized file, you must use the `pizza_cheese` key:
+          * 
+          * {
+          *  "pizza": {
+          *   "cheese": {
+          *     "description": "The primary ingredient of a pizza.",
+          *     "message": "Fromage"
+          *     }
+          *   }
+          * }
+          * 
+          * Note: this property come from Polymer.AppLocalizeBehavior
+          * and is declared here only to satisfy the Polymer Analyzer.
+          * @public
+          */
+          localize: {
+            type: Function
+          },
+
+          /**
+           * If true, will use the provided key when
+           * the translation does not exist for that key.
+           * @public
+           * @override from Polymer.AppLocalizeBehavior
+           */
+          useKeyIfMissing: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * The boundary string that will be use to explode
+           * the provided key of the `localize` function.
+           * 
+           * It is use to support nested localized files.
+           * @public
+           */
+          delimiterTranslation: {
+            type: String,
+            value: Sherby.Localize.delimiterTranslation
+          },
+
+          /**
+           * The path to the locales files.
+           * @public
+           */
+          pathToLocales: {
+            type: String,
+            value: 'locales/'
+          },
+
+          /**
+           * The function used to extract the translation from
+           * yor localized files.
+           * @public
+           */
+          extractTranslation: {
+            type: Function,
+            computed: '__computeExtractTranslation(getNestedPropertyOfWithDelimiter, delimiterTranslation)'
+          }
+        }
+      }
+
+      /**
+       * Return the observers.
+       * @static
+       * @return {Array<String>} Observers.
+       */
+      static get observers() {
+        return [
+          '_loadResourcesOnLanguageChanged(pathToLocales, language)'
+        ]
+      }
+
+      /**
+       * Load the resources file when the language change.
+       * @protected
+       * @param {String} pathToLocales Path to the locales files.
+       * @param {String} language Current language.
+       */
+      _loadResourcesOnLanguageChanged(pathToLocales, language) {
+        if (pathToLocales && language) {
+          const path = this.resolveUrl(`${pathToLocales}${language}.json`)
+          this.loadResources(path)
+        }
+      }
+
+      /**
+       * Compute the extract translation.
+       * @param {Function} getNestedPropertyOfWithDelimiter Function to obtain the nested property.
+       * @return {Function} Extract translation function.
+       */
+      __computeExtractTranslation(getNestedPropertyOfWithDelimiter, delimiterTranslation) {
+        let returnFunction
+
+        if (getNestedPropertyOfWithDelimiter && delimiterTranslation) {
+          returnFunction = (resources, language, key) => {
+            const translation = getNestedPropertyOfWithDelimiter(resources, key, null, delimiterTranslation)
+            return translation ? translation.message : null
+          }
+        } else {
+          returnFunction = (resources, language, key) => {
+            return resources ? resources[key] : null
+          }
+        }
+
+        return returnFunction
+      }
+    }
+</script>

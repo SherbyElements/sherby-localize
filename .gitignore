@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Polymer analysis file for documentation
+analysis.json

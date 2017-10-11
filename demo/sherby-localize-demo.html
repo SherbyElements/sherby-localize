@@ -1,0 +1,38 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../sherby-localize-mixin.html">
+
+<dom-module id="sherby-localize-demo">
+  <template>
+    <h2>[[localize('meat-toppings')]]</h2>
+    <ul>
+      <li>[[localize('meat-toppings_bacon-pieces')]]</li>
+      <li>[[localize('meat-toppings_pepperoni')]]</li>
+    </ul>
+  </template>
+  <script>
+    UdeS.Language = {
+      defaultLanguage: 'en-CA',
+      supportedLanguages: ['en-CA', 'fr-CA'],
+    };
+
+    /**
+     * @polymer
+     * @customElement
+     * @demo
+     * @extends {Polymer.Element}
+     * @appliesMixin Sherby.LocalizeMixin
+     */
+    class SherbyLocalizeDemo extends Sherby.LocalizeMixin(Polymer.Element) {
+      /**
+       * Return the HTML tag.
+       * @static
+       * @return {String} HTML tag.
+       */
+      static get is() {
+        return 'sherby-localize-demo';
+      }
+    }
+
+    window.customElements.define(SherbyLocalizeDemo.is, SherbyLocalizeDemo);
+  </script>
+</dom-module>

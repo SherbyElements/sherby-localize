@@ -12,27 +12,27 @@
   <script>
     UdeS.Language = {
       defaultLanguage: 'en-CA',
-      supportedLanguages: ['en-CA', 'fr-CA'],
-    };
+      supportedLanguages: ['en-CA', 'fr-CA']
+    }
 
-    /**
-     * @polymer
-     * @customElement
-     * @demo
-     * @extends {Polymer.Element}
-     * @appliesMixin Sherby.LocalizeMixin
-     */
-    class SherbyLocalizeDemo extends Sherby.LocalizeMixin(Polymer.Element) {
+/**
+ * @polymer
+ * @customElement
+ * @demo
+ * @extends {Polymer.Element}
+ * @appliesMixin Sherby.LocalizeMixin
+ */
+class SherbyLocalizeDemo extends Sherby.LocalizeMixin(Polymer.Element) {
       /**
        * Return the HTML tag.
        * @static
        * @return {String} HTML tag.
        */
-      static get is() {
-        return 'sherby-localize-demo';
-      }
+      static get is () {
+        return 'sherby-localize-demo'
+  }
     }
 
-    window.customElements.define(SherbyLocalizeDemo.is, SherbyLocalizeDemo);
+    window.customElements.define(SherbyLocalizeDemo.is, SherbyLocalizeDemo)
   </script>
 </dom-module>

@@ -36,7 +36,7 @@
        * @static
        * @return {Object} Properties.
        */
-      static get properties() {
+      static get properties () {
         return {
           /**
           * Translates a string to the current `language`. Any parameters to
@@ -115,7 +115,7 @@
        * @static
        * @return {Array<String>} Observers.
        */
-      static get observers() {
+      static get observers () {
         return [
           '_loadResourcesOnLanguageChanged(pathToLocales, language)'
         ]
@@ -127,7 +127,7 @@
        * @param {String} pathToLocales Path to the locales files.
        * @param {String} language Current language.
        */
-      _loadResourcesOnLanguageChanged(pathToLocales, language) {
+      _loadResourcesOnLanguageChanged (pathToLocales, language) {
         if (pathToLocales && language) {
           const path = this.resolveUrl(`${pathToLocales}${language}.json`)
           this.loadResources(path)
@@ -139,7 +139,7 @@
        * @param {Function} getNestedPropertyOfWithDelimiter Function to obtain the nested property.
        * @return {Function} Extract translation function.
        */
-      __computeExtractTranslation(getNestedPropertyOfWithDelimiter, delimiterTranslation) {
+      __computeExtractTranslation (getNestedPropertyOfWithDelimiter, delimiterTranslation) {
         let returnFunction
 
         if (getNestedPropertyOfWithDelimiter && delimiterTranslation) {

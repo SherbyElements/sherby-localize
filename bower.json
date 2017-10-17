@@ -4,12 +4,13 @@
   "authors": [
     "Benjamin Rancourt <benjamin.rancourt@usherbrooke.ca>"
   ],
+  "licence": "MIT",
   "main": "sherby-localize-mixin.html",
   "dependencies": {
     "app-localize-behavior": "Collaborne/app-localize-behavior#fix/103",
     "polymer": "Polymer/polymer#^2.0.0",
-    "udes-language-mixin": "UdeSElements/udes-language-mixin#^2.2.0",
-    "sherby-nested-property": "SherbyElements/sherby-nested-property#^1.0.1"
+    "sherby-nested-property": "SherbyElements/sherby-nested-property#^1.0.1",
+    "udes-language-mixin": "UdeSElements/udes-language-mixin#^2.2.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^3.0.0",

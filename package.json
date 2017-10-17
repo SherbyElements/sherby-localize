@@ -1,6 +1,6 @@
 {
-  "name": "sherby-localize",
-  "version": "1.0.0",
+  "name": "@sherby/localize",
+  "version": "1.0.2",
   "description": "Mixin to localize Polymer components",
   "scripts": {
     "format": "npm run format:js && npm run format:json",
@@ -16,14 +16,17 @@
     "url": "git+https://github.com/SherbyElements/sherby-localize.git"
   },
   "keywords": [
+    "format",
     "i18n",
+    "internationalization",
     "l10n",
     "language",
-    "localisation",
-    "translation",
+    "localization",
     "localize",
     "polymer",
     "sherby",
+    "translation",
+    "web-components",
     "webcomponents"
   ],
   "author": "Benjamin Rancourt",

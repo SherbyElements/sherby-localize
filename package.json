@@ -19,15 +19,20 @@
     "test": "polymer test"
   },
   "keywords": [
+    "format",
     "i18n",
+    "internationalization",
     "l10n",
+    "language",
     "locale",
     "localization",
     "localize",
     "mixin",
     "polymer",
+    "sherby",
     "translate",
     "translation",
+    "web-components",
     "webcomponents"
   ],
   "repository": {

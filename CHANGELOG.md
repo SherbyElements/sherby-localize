@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-rc.1] - 2018-05-20
+- First version with Polymer 3.
+
 ## [1.0.2] - 2017-10-17
 ### Added
 - Add the mixin on npm under @sherby/localize.

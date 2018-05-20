@@ -1,13 +1,22 @@
 module.exports = {
-  extends: [
-    "udes"
-  ],
+  // Extends the UdeS ESLint config
+  extends: 'eslint-config-udes/polymer-2-element',
+
+  parserOptions: {
+    sourceType: 'module',
+  },
+
   rules: {
     'new-cap': ['error', {
-      capIsNewExceptionPattern: '^(UdeS|Polymer|Sherby)'
-    }]
+      capIsNewExceptionPattern: '^(UdeS|Polymer|Sherby)',
+    }],
   },
+
   globals: {
-    Sherby: true
-  }
+    IntlMessageFormat: true,
+    Sherby: true,
+  },
+
+  // Limit ESLint to a specific project
+  root: true,
 }

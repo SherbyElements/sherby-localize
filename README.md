@@ -1,8 +1,7 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/SherbyElements/sherby-localize)
-![Polymer 2 supported](https://img.shields.io/badge/Polymer%202-supported-blue.svg)
+[![Build status](https://travis-ci.org/SherbyElements/sherby-localize.svg?branch=master)](https://travis-ci.org/SherbyElements/sherby-localize)
 
 # Sherby.LocalizeMixin
-
 If you want to **translate**, to **localize** your application or simply only 
 **regroup** all static texts, the `Sherby.LocalizeMixin` can help you.
 
@@ -22,8 +21,8 @@ By exemple, a *locales/en-CA.json* file:
 ```
 
 If you want to have **nested** localization files, as below, you simply need
-to provide all keys of the nested object, separate by **_** (delimiter by 
-default). By exemple, the key `meat-toppings_bacon-pieces` will provide the 
+to provide all keys of the nested object, separate by **.** (delimiter by 
+default). By exemple, the key `meat-toppings.bacon-pieces` will provide the 
 correct translation (Bacon Pieces) for the following json file:
 
 ```json
@@ -42,9 +41,9 @@ associated with the current language is dynamically loaded and the localised
 texts are automatically translated when the current language change.
 
 ## Usage
-- Add the `SherbyElements/sherby-localize` dependency to your projet:
+- Add the `@sherby/sherby-localize` dependency to your projet:
   ```bash
-  bower install --save SherbyElements/sherby-localize
+  npm install @sherby/sherby-localize
   ```
 
 - Create the locales directory near the component you want localized
@@ -70,27 +69,37 @@ texts are automatically translated when the current language change.
   }
   ```
 
-- Import the `Sherby.LocalizeMixin` inside the component you want localized:
-    ```html
-    <link rel="import" href="../bower_components/sherby-localize/sherby-localize-mixin.html">
-    ```
-
-- Apply the mixin to your element class:
+- Use it
     ```javascript
-    class MyElement extends Sherby.LocalizeMixin(Polymer.Element) {
-    }
-    ```
+    // Import the `SherbyLocalizeMixin` inside the component you want localized
+    import { SherbyLocalizeMixin } from '@sherby/sherby-localize/sherby-localize-mixin.js';
+    import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 
-- Use the `localize` function to translate all texts:
-  - Inside the element template:
-    ```html
-    <h2>[[localize('meat-toppings')]]</h2>
-    ```
+    /* eslint-disable no-unused-vars */
 
-  - By JavaScript:
-    ```javascript
-    getLocalizedBaconPieces(localize) {
-      return localize('meat-toppings_bacon-pieces') || '';
+    // Apply the mixin to your element class
+    /**
+     * @customElement
+     * @polymer
+     * @extends {PolymerElement}
+     * @appliesMixin SherbyLocalizeMixin
+     */
+    class MyElement extends SherbyLocalizeMixin(PolymerElement) {
+      static get template() {
+        // Use the `localize` function to translate all texts
+        return html`
+          <h2>[[localize('meat-toppings')]]</h2>
+        `;
+      }
+
+      /**
+       * Get the localized bacon pieces string.
+       * @param {Function} localize Localize function.
+       * @return {String} Localized bacon pieces.
+       */
+      getLocalizedBaconPieces(localize) {
+        return localize('meat-toppings.bacon-pieces') || '';
+      }
     }
     ```
 
@@ -111,13 +120,13 @@ texts are automatically translated when the current language change.
 
 ## Language aware with UdeS.LanguageMixin
 If you want your component to be aware of the current language only,
-you should take a look on *[UdeS.LanguageMixin][1]*, a mixin used by 
-`Sherby.LocalizeMixin`.
+you should take a look on *[UdeSLanguageMixin][1]*, a mixin used by 
+`SherbyLocalizeMixin`.
 
 ## Thanks
 Special thanks to the [Collaborne team](https://github.com/Collaborne) for his [app-localize-chrome-i18n-mixin](https://github.com/Collaborne/app-localize-chrome-i18n-mixin) mixin that inspired me for this mixin.
 
-[1]: https://www.webcomponents.org/element/UdeSElements/udes-language-mixin "UdeS.LanguageMixin"
+[1]: https://www.webcomponents.org/element/UdeSElements/udes-language-mixin "UdeSLanguageMixin"
 [2]: https://github.com/Collaborne/app-localize-behavior#fix/103 "Fix made by Collaborne team"
 [3]: https://github.com/PolymerElements/app-localize-behavior "Polymer.AppLocalizeBehavior"
 [4]: https://formatjs.io/ "Format.js"

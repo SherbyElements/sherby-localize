@@ -1,41 +1,55 @@
 {
-  "name": "@sherby/localize",
-  "version": "1.0.2",
+  "name": "@sherby/sherby-localize",
+  "flat": true,
+  "version": "2.0.0-rc.1",
   "description": "Mixin to localize Polymer components",
+  "author": "Benjamin Rancourt <benjamin.rancourt@usherbrooke.ca>",
+  "main": "sherby-localize-mixin.html",
   "scripts": {
-    "format": "npm run format:js && npm run format:json",
-    "format:js": "eslint . --ext js,html --ignore-path .gitignore --fix",
-    "format:json": "eslint . --ext .json --ignore-path .gitignore --fix",
-    "lint": "npm run lint:js && npm run lint:json && npm run lint:polymer",
-    "lint:js": "eslint . --ext js,html --ignore-path .gitignore",
-    "lint:json": "eslint . --ext .json --ignore-path .gitignore",
-    "lint:polymer": "polymer lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SherbyElements/sherby-localize.git"
+    "format": "npm-run-all format:*",
+    "format:js": "eslint . --ext js --fix",
+    "format:json": "eslint . --ext json --fix",
+    "format:markdown": "eslint . --ext md --fix",
+    "format:polymer": "polymer lint --fix",
+    "lint": "npm-run-all lint:*",
+    "lint:js": "eslint . --ext js",
+    "lint:json": "eslint . --ext json",
+    "lint:markdown": "eslint . --ext md",
+    "lint:polymer": "polymer lint",
+    "test": "polymer test"
   },
   "keywords": [
-    "format",
     "i18n",
-    "internationalization",
     "l10n",
-    "language",
+    "locale",
     "localization",
     "localize",
+    "mixin",
     "polymer",
-    "sherby",
+    "translate",
     "translation",
-    "web-components",
     "webcomponents"
   ],
-  "author": "Benjamin Rancourt",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SherbyElements/sherby-localize.git"
+  },
   "bugs": {
     "url": "https://github.com/SherbyElements/sherby-localize/issues"
   },
+  "license": "MIT",
   "homepage": "https://github.com/SherbyElements/sherby-localize",
+  "dependencies": {
+    "@polymer/app-localize-behavior": "^3.0.0-pre.1",
+    "@polymer/polymer": "^3.0.0-pre.1",
+    "@sherby/sherby-nested-property": "^2.0.0-rc.1",
+    "@udeselements/udes-language-mixin": "^3.0.0-rc.1"
+  },
   "devDependencies": {
-    "eslint-config-udes": "^0.1.2"
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.12",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "wct-browser-legacy": "^1.0.0",
+    "eslint-config-udes": "^0.2.1",
+    "npm-run-all": "^4.1.2"
   }
 }
